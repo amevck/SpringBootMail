@@ -1,4 +1,4 @@
-package hello;
+package email;
 
 import java.util.Arrays;
 
@@ -30,6 +30,7 @@ public class Application implements RabbitListenerConfigurer {
         SpringApplication.run(Application.class, args);
     }
 
+    // complete these data with correct configurations.
     public static final String EXCHANGE_NAME = "";
     public static final String QUEUE_GENERIC_NAME = "rabbit@CL-AsankaE";
     public static final String QUEUE_SPECIFIC_NAME = "rabbit@CL-AsankaE";

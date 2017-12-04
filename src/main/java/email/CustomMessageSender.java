@@ -1,4 +1,4 @@
-package hello;
+package email;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +20,13 @@ public class CustomMessageSender {
     public CustomMessageSender(final RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
-    int i = 0;
     JSONObject jobject = new JSONObject();
 
+    /**
+     * Create message - for creating mssg(mock)
+     * @param jobject - json object wich contain key value paiers
+     * @throws JSONException - throw json phrase exceptions
+     */
     public void createMsg(JSONObject jobject) throws JSONException {
         jobject.put("cmId","100");
         jobject.put("user","Hilton");
@@ -51,13 +55,15 @@ public class CustomMessageSender {
 
     String s = "{\"cmId\": 100,\"user\": \"Hilton\",\"invoice_number\":\"1233\",\"contact_number\":\"564654646\", \"email_address\":\"ugdsiugdiug@gmaijsai.com\", \"remarks\":\"adfasf\", \"hotel_name\":\"mount lavinia\", \"hotel_phone1\":\"214214214\", \"hotel_address\":\"8235827580\", \"check_in_date\":\"3529789\", \"check_out_date\":\"8357820570\", \"special_request\":\"238572805708\", \"numberOfRoom\":\"5\", \"roomName\":\"uehguohsg\", \"currecny\":\"adgdjasbg\", \"rate\":\"hgiush\", \"total\":\"sjdvsdgv\", \"Delux\":\"sjbhgjh\", \"booking_currency\":\"jdvnjdabnv\", \"booking_total\":\"asfaf\", \"booking_statue\":\"sdhvosdh\",\"sentTo\":\"amem.vck@gmail.com\"}";
 
+    /**
+     * this is for sending periodically json objects to rabbit queue
+     * @throws JSONException
+     */
     @Scheduled(fixedDelay = 300L)
     public void sendMessage() throws JSONException {
         JSONObject jobject = new JSONObject();
         this.createMsg(jobject);
-        final CustomMessage message = new CustomMessage("Hello there!", i, false);
-        log.info("Sending message...");
         rabbitTemplate.convertAndSend(Application.EXCHANGE_NAME, Application.ROUTING_KEY, jobject.toString());
-        i++;
+        log.info("A mock message sent to rabbit que");
     }
 }

@@ -1,4 +1,4 @@
-package hello;
+package email;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,8 +54,15 @@ public class SimpleEmailController {
         sender.send(message);
     }
 
+    /**
+     *
+     * @param payload - String json parameters
+     * @return - string status
+     * @throws Exception
+     */
     @PostMapping("/sendClientConfirmation")
     @ResponseBody
+
     public String process(@RequestBody String payload) throws Exception {
 
             try {
