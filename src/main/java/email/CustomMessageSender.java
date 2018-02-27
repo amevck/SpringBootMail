@@ -59,7 +59,7 @@ public class CustomMessageSender {
      * this is for sending periodically json objects to rabbit queue
      * @throws JSONException
      */
-    @Scheduled(fixedDelay = 300L)
+//    @Scheduled(fixedDelay = 300L)
     public void sendMessage() throws JSONException {
         JSONObject jobject = new JSONObject();
         this.createMsg(jobject);
