@@ -7,3 +7,4 @@
 /build
 /gradle
 /gradlew
+/build/resources/main/application.properties
