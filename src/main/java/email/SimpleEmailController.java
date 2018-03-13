@@ -34,11 +34,17 @@ public class SimpleEmailController {
     public String process(@RequestBody String payload) throws Exception {
 
             try {
-                emailService.sendEmail(payload);
+                emailService.sendEmail(payload,"reservationMail.html","Miracle asia booking confirmation");
                 return "Email Sent!";
             } catch (Exception ex) {
                 return "Error in sending email: " + ex;
             }
+    }
+
+    @RequestMapping(value="/test",method = RequestMethod.GET)
+    public String test(){
+
+     return    "reservation";
     }
 
 

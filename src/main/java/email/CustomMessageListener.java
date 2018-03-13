@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.amqp.rabbit.annotation.RabbitListeners;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -18,7 +17,6 @@ import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
@@ -127,7 +125,7 @@ public class CustomMessageListener {
 
         freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/");
 
-        Template t = freemarkerConfig.getTemplate("clientConfirmation.ftl");
+        Template t = freemarkerConfig.getTemplate("static/templates/clientConfirmation.ftl");
         String text = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
         helper.setTo((String)jsonObj.get("sentTo"));
         helper.setText(text, true); // set to html
