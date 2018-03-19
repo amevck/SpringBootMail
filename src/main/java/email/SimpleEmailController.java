@@ -31,14 +31,27 @@ public class SimpleEmailController {
     @PostMapping("/sendClientConfirmation")
     @ResponseBody
 
-    public String process(@RequestBody String payload) throws Exception {
+    public String sendClientConfirmation(@RequestBody String payload) throws Exception {
 
             try {
-                emailService.sendEmail(payload,"reservationMail.html","Miracle asia booking confirmation");
+                emailService.sendEmail(payload,"reservationMail.html","Miracle Of Asia booking confirmation");
                 return "Email Sent!";
             } catch (Exception ex) {
                 return "Error in sending email: " + ex;
             }
+    }
+
+    @PostMapping("/sendHotelApproved")
+    @ResponseBody
+
+    public String sendHotelApproved(@RequestBody String payload) throws Exception {
+
+        try {
+            emailService.sendEmail(payload,"hotelApproved.html","Miracle Of Asia hotel approved");
+            return "Email Sent!";
+        } catch (Exception ex) {
+            return "Error in sending email: " + ex;
+        }
     }
 
     @RequestMapping(value="/test",method = RequestMethod.GET)
@@ -46,6 +59,7 @@ public class SimpleEmailController {
 
      return    "reservation";
     }
+
 
 
 }
