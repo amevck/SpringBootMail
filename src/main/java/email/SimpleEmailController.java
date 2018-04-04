@@ -31,13 +31,13 @@ public class SimpleEmailController {
     @PostMapping("/sendClientConfirmation")
     @ResponseBody
 
-    public String sendClientConfirmation(@RequestBody String payload) throws Exception {
+    public void sendClientConfirmation(@RequestBody String payload) throws Exception {
 
             try {
                 emailService.sendEmail(payload,"reservationMail.html","Miracle Of Asia booking confirmation");
-                return "Email Sent!";
+               // return "Sent!";
             } catch (Exception ex) {
-                return "Error in sending email: " + ex;
+               // return "Error in sending email: " + ex;
             }
     }
 
